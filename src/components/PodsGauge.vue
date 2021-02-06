@@ -2,7 +2,7 @@
   <vue-gauge
     :refid="'pods-gauge-id'"
     :options="{
-      'arcDelimiters': [19],
+      'arcDelimiters': [24],
       'hasNeedle': false,
       'arcColors': ['#ff0000', '#d8d8d8'],
       'arcLabels': ['24%'],
