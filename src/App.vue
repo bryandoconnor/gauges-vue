@@ -1,37 +1,46 @@
-<template>
-  <div class="gauges">
-    <div><CPUsGauge />CPUs</div>
-    <div><PodsGauge />Pods</div>
-    <div><ClustersGauge />Clusters</div>
-    <div><SiteGauge />Site</div>
-  </div>
-</template>
-
 <script>
-import PodsGauge from './components/PodsGauge.vue';
-import CPUsGauge from './components/CPUsGauge.vue';
-import ClustersGauge from './components/ClustersGauge.vue';
-import SiteGauge from './components/SiteGauge.vue';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
+import PodsGauge from './components/gauges/PodsGauge.vue';
+import CPUsGauge from './components/gauges/CPUsGauge.vue';
+import ClustersGauge from './components/gauges/ClustersGauge.vue';
+import SiteGauge from './components/gauges/SiteGauge.vue';
 
 export default {
   name: 'App',
   components: {
+    Navbar,
     PodsGauge,
     CPUsGauge,
     ClustersGauge,
     SiteGauge,
+    Footer,
   }
 }
 </script>
 
+<template>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 mb-4"><Navbar /></div>
+      <div class="col-12 gauges">
+        <div class="text-center"><CPUsGauge />CPUs</div>
+        <div class="text-center"><PodsGauge />Pods</div>
+        <div class="text-center"><ClustersGauge />Clusters</div>
+        <div class="text-center"><SiteGauge />Site</div>
+      </div>
+      <div class="col-12 text-center"><Footer /></div>
+    </div>
+  </div>
+</template>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
-  font-weight: 800;
+a {
+  text-decoration: none;
+}
+body {
+  margin: 0;
 }
 .gauges {
   background-color: #defeff;
@@ -43,5 +52,8 @@ export default {
 .gauges > div {
   display: inline-block;
   width: 25%;
+}
+.text-center {
+  text-align: center;
 }
 </style>

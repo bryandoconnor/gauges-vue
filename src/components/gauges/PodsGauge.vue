@@ -21,7 +21,7 @@ export default {
     return {
       UtilNum: 20
     }
-  }
+  },
 }
 </script>
 
