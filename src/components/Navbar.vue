@@ -20,7 +20,7 @@
                 <i class="fas fa-shopping-cart cart-icon-bg"></i>
                 <span class="count-cart">0</span>
               </a>
-              <div class="navLink p-0"><AuthNav /></div>
+              <!-- <div class="navLink p-0"><AuthNav /></div> -->
             </div>
           </div>
 
@@ -34,20 +34,18 @@
             </a>
           </div>
 
-          <div style={menuStyle.displays.menuDisplay}>
-            <div class="navHamburger" onClick={clickMenu}>Menu</div>
-          </div>
-          <div style={closeStyle.displays.closeDisplay}>
-            <div class="navHamburger" onClick={clickClose}>X</div>
+          <div>
+            <div class="navHamburger" @click="hideMenuButton" v-if="menuButtonDisplays">Menu</div>
+            <div class="navHamburger" @click="hideCloseButton" v-if="closeButtonDisplays">X</div>
           </div>
 
-          <div class="nav-mobile w-100" style={navStyle.displays.navDisplay}>
+          <div class="nav-mobile w-100" v-if="mobileNavDisplays">
             <a href="/" class="navLink">Dash</a>
             <a href="/products" class="navLink">Products</a>
             <a href="/profile" class="navLink">My Profile</a>
             <a href="/about" class="navLink">About</a>
             <a href="/cart" class="navLink"><i class="fas fa-shopping-cart"></i><span class="count-cart">0</span></a>
-            <div class="navLink"><AuthNav /></div>
+            <!-- <div class="navLink"><AuthNav /></div> -->
           </div>
 
         </div>
@@ -56,12 +54,38 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
   name: 'Navbar',
   setup() {
-    return {
-      Quantity: 20
+    const closeButtonDisplays = ref(false);
+    const menuButtonDisplays = ref(true);
+    const mobileNavDisplays = ref(false);
+
+    function toggleMobileNav() {
+      mobileNavDisplays.value = !mobileNavDisplays.value;
     }
+
+    function hideCloseButton() {
+      closeButtonDisplays.value = false;
+      menuButtonDisplays.value = true;
+      toggleMobileNav();
+    }
+
+    function hideMenuButton() {
+      closeButtonDisplays.value = true;
+      menuButtonDisplays.value = false;
+      toggleMobileNav();
+    }
+
+    return {
+      closeButtonDisplays,
+      menuButtonDisplays,
+      hideMenuButton,
+      hideCloseButton,
+      mobileNavDisplays,
+    };
   },
 }
 </script>
